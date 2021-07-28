@@ -4,10 +4,13 @@
   max-width: 1144px;
 }
 
-/* .wrapper {
-  display: flex;
-  justify-content: center;
-} */
+.nav {
+  padding: 0 1.5em;
+}
+
+.nav-limit-item + .nav-limit-item {
+  margin-left: 1em;
+}
 
 .grid {
   display: flex;

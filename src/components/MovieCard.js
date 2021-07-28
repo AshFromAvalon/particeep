@@ -1,6 +1,4 @@
 import { useDispatch } from "react-redux";
-import LikeButton from "./LikeButton";
-import DislikeButton from "./DislikeButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown,
