@@ -17,7 +17,7 @@ header h1 {
 .nav {
   margin-top: 1.5em;
   padding: 0 2em;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .nav-limit-item + .nav-limit-item {
@@ -55,12 +55,12 @@ header h1 {
     flex-basis: 33.33%;
   }
 }
-@media (max-width: 1072px) {
+@media (max-width: 1244px) {
   .grid-item {
     flex-basis: 50%;
   }
 }
-@media (max-width: 686px) {
+@media (max-width: 930px) {
   .grid-item {
     flex-basis: 100%;
   }
@@ -102,11 +102,16 @@ header h1 {
 .pagination {
   margin-top: 1em;
   width: 20%;
+  min-width: 100px;
 }
 
 .pagination-item {
   border: 1px solid #909090;
   padding: 0.4em 0.6em;
+}
+
+.pagination-item + .pagination-item {
+  margin-left: 1em;
 }
 
 .pagination-item:hover {

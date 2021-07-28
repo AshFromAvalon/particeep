@@ -81,27 +81,29 @@ function App() {
         </nav>
 
         <div className="col">
-          <ul className="grid">
-            {currentMovies.map((movie) => {
-              return (
-                <MovieCard
-                  key={movie.id}
-                  id={movie.id}
-                  title={movie.title}
-                  likes={movie.likes}
-                  dislikes={movie.dislikes}
-                  category={movie.category}
-                />
-              );
-            })}
-          </ul>
+          <div className="row-col">
+            <ul className="grid">
+              {currentMovies.map((movie) => {
+                return (
+                  <MovieCard
+                    key={movie.id}
+                    id={movie.id}
+                    title={movie.title}
+                    likes={movie.likes}
+                    dislikes={movie.dislikes}
+                    category={movie.category}
+                  />
+                );
+              })}
+            </ul>
+            <Pagination
+              moviesPerPage={moviesPerPage}
+              totalMovies={movies.length}
+              paginate={paginate}
+            />
+          </div>
         </div>
       </div>
-      <Pagination
-        moviesPerPage={moviesPerPage}
-        totalMovies={movies.length}
-        paginate={paginate}
-      />
     </main>
   );
 }
