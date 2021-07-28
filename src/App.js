@@ -8,6 +8,7 @@ import { movies$ } from "./movies";
 function App() {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
+  const filteredMovies = useSelector((state) => state.filteredMovies);
   const categories = useSelector((state) => state.categories);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
@@ -23,13 +24,13 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  // retreive categories
-  // const uniqCategories = [...new Set(movies.map((movie) => movie.category))];
-
   // Get current movies
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const currentMovies =
+    filteredMovies.length > 0
+      ? filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie)
+      : movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);

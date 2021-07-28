@@ -1,10 +1,7 @@
-// import { movies$ } from "../movies";
-// const movieList = [];
-// movies$.then((movies) => movies.forEach((movie) => movieList.push(movie)));
-
 const initialState = {
   movies: [],
   categories: [],
+  filteredMovies: [],
   selectedCat: [],
 };
 
@@ -65,17 +62,21 @@ const movieReducer = (state = initialState, action) => {
         ? selectedCatCopy.splice(selectedCatCopy.indexOf(action.payload), 1)
         : selectedCatCopy.push(action.payload);
 
-      let moviesCopy = [...state.movies];
-
+      let filteredMOviesCopy = [...state.filteredMovies];
+      if (selectedCatCopy.length === 0) {
+        filteredMOviesCopy = [];
+      }
       if (selectedCatCopy.length > 0) {
-        moviesCopy = moviesCopy.filter((movie) =>
-          selectedCatCopy.includes(movie.category)
-        );
+        filteredMOviesCopy = [
+          ...state.movies.filter((movie) =>
+            selectedCatCopy.includes(movie.category)
+          ),
+        ];
       }
 
       return {
         ...state,
-        movies: moviesCopy,
+        filteredMovies: filteredMOviesCopy,
         selectedCat: selectedCatCopy,
       };
     }
