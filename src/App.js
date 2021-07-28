@@ -8,18 +8,8 @@ function App() {
   const movies = useSelector((state) => state.movies);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
-  const categories = [...new Set(movies.map((movie) => movie.category))];
-  const [selectedCat, setSelectedCat] = useState(categories);
-
-  // const handleSelect = (cat) => {
-  //   console.log(cat);
-  //   const newArr = [];
-  //   if (newArr.indexOf(cat) < 0) {
-  //     newArr.push(cat);
-  //   }
-
-  //   setSelectedCat(newArr);
-  // };
+  const uniqCategories = [...new Set(movies.map((movie) => movie.category))];
+  const [selectedCat, setSelectedCat] = useState(uniqCategories);
 
   // Get current movies
   const indexOfLastMovie = currentPage * moviesPerPage;
@@ -68,7 +58,7 @@ function App() {
             <div className="col mb-2">
               <div className="row--col">
                 <h2 className="mb-2">Categories</h2>
-                {categories.map((category) => {
+                {uniqCategories.map((category) => {
                   return (
                     <div className="row nav-category-item">
                       <p>{category}</p>
