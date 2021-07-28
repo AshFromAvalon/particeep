@@ -4,6 +4,8 @@
   max-width: 1144px;
 }
 
+/* TOP HEADER */
+
 header {
   text-align: center;
   padding: 1em 0;
@@ -11,13 +13,25 @@ header {
 
 header h1 {
   margin-bottom: 0.3em;
-  color: wheat;
+  color: var(--clr-accent--200);
 }
+
+/* LEFT SIDE NAV  */
 
 .nav {
   margin-top: 1.5em;
   padding: 0 2em;
   min-width: 200px;
+}
+
+.nav-limit-item {
+  border: 1px solid;
+  border-color: --crl-primary--100;
+  padding: 0.5em 0.7em;
+}
+
+.nav-limit-item:hover {
+  cursor: pointer;
 }
 
 .nav-limit-item + .nav-limit-item {
@@ -27,6 +41,8 @@ header h1 {
 .nav-category-item {
   margin: 0.5em 0;
 }
+
+/* GRID LIST  */
 
 .grid {
   display: flex;
@@ -44,8 +60,7 @@ header h1 {
 }
 
 .grid-item-wrapper {
-  /* background-color: rgb(226, 226, 226); */
-  background-color: #2e2e2e;
+  background-color: var(--clr-secondary--100);
   padding: 1em 1em;
   border-radius: 5px;
 }
@@ -66,38 +81,30 @@ header h1 {
   }
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.row-col {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.col {
-  display: flex;
-}
+/* GRID LIST ITEM */
 
 .icon-container {
   width: 40%;
   justify-content: space-between;
 }
 
+.category {
+  font-weight: 300;
+}
+
 .bg-gauge {
   margin-top: 1em;
   height: 5px;
   width: 40%;
-  background-color: skyblue;
+  background-color: var(--clr-accent--100);
 }
 
 .gauge {
   height: 100%;
-  background-color: #909090;
+  background-color: var(--crl-primary--200);
 }
+
+/* PAGINATION */
 
 .pagination {
   margin-top: 1em;
@@ -106,7 +113,8 @@ header h1 {
 }
 
 .pagination-item {
-  border: 1px solid #909090;
+  border: 1px solid;
+  border-color: --crl-primary--100;
   padding: 0.4em 0.6em;
 }
 
@@ -116,4 +124,37 @@ header h1 {
 
 .pagination-item:hover {
   cursor: pointer;
+}
+
+/* UTILITARIES */
+
+.mb-2 {
+  margin-bottom: 2em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.row--start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.row--col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.col {
+  display: flex;
+}
+
+.col-list {
+  display: flex;
+  flex: 1;
 }

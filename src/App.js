@@ -32,16 +32,16 @@ function App() {
   return (
     <main className="container">
       <header className="container">
-        <div className="row-col">
+        <div className="row--col">
           <h1>Particeep's technical test</h1>
           <p>Thomas Le Bihan - Front End Junior Developer</p>
         </div>
       </header>
       <div className="row">
         <nav className="nav col">
-          <div className="row-col">
+          <div className="row--col">
             <div className="col mb-2">
-              <div className="row-col">
+              <div className="row--col">
                 <h2 className="mb-2">Number of movies per page</h2>
                 <div className="col">
                   <p
@@ -66,7 +66,7 @@ function App() {
               </div>
             </div>
             <div className="col mb-2">
-              <div className="row-col">
+              <div className="row--col">
                 <h2 className="mb-2">Categories</h2>
                 {categories.map((category) => {
                   return (
@@ -80,8 +80,8 @@ function App() {
           </div>
         </nav>
 
-        <div className="col">
-          <div className="row-col">
+        <div className="col-list">
+          <div className="row--col">
             <ul className="grid">
               {currentMovies.map((movie) => {
                 return (

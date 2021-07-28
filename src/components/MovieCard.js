@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown,
   faThumbsUp,
-  faTrash,
+  faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 const MovieCard = ({ id, title, likes, dislikes, category }) => {
@@ -31,7 +31,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
         </div>
 
         <div className="row">
-          <div className="row-col">
+          <div className="row--col">
             <div className="col icon-container">
               <div className="btn-icon">
                 <FontAwesomeIcon
@@ -64,7 +64,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
           <div className="col">
             <div className="btn-icon">
               <FontAwesomeIcon
-                icon={faTrash}
+                icon={faTrashAlt}
                 style={{ cursor: "pointer" }}
                 size="sm"
                 onClick={() => dispatch({ type: "delete", payload: id })}
