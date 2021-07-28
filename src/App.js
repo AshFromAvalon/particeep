@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector } from "react-redux";
+import MovieCard from "./components/MovieCard";
 
 function App() {
+  const movies = useSelector((state) => state.movies);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="container">
+      <div className="wrapper">
+        <ul className="grid">
+          {movies.map((movie) => {
+            return (
+              <MovieCard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                likes={movie.likes}
+                dislikes={movie.dislikes}
+                category={movie.category}
+              />
+            );
+          })}
+        </ul>
+      </div>
+    </main>
   );
 }
 
