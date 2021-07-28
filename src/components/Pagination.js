@@ -9,9 +9,13 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="container row pagination">
         {pageNumbers.map((number) => {
-          return <li onClick={() => paginate(number)}>{number}</li>;
+          return (
+            <li className="pagination-item" onClick={() => paginate(number)}>
+              {number}
+            </li>
+          );
         })}
       </ul>
     </nav>

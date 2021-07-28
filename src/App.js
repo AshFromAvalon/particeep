@@ -8,8 +8,8 @@ function App() {
   const movies = useSelector((state) => state.movies);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
-  // const categories = [...new Set(movies.map((movie) => movie.category))];
-  // const [selectedCat, setSelectedCat] = useState(categories);
+  const categories = [...new Set(movies.map((movie) => movie.category))];
+  const [selectedCat, setSelectedCat] = useState(categories);
 
   // const handleSelect = (cat) => {
   //   console.log(cat);
@@ -31,47 +31,69 @@ function App() {
 
   return (
     <main className="container">
-      <nav className="row nav">
-        <div className="row">
-          <p className="nav-limit-item" onClick={() => setMoviesPerPage(4)}>
-            4
-          </p>
-          <p className="nav-limit-item" onClick={() => setMoviesPerPage(8)}>
-            8
-          </p>
-          <p className="nav-limit-item" onClick={() => setMoviesPerPage(12)}>
-            12
-          </p>
-        </div>
-      </nav>
-      {/* <div className="categories">
-        {categories.map((category) => {
-          return (
-            <div className="row cat-item">
-              <div className="col">
-                <p onClick={() => handleSelect(category)}>X</p>
-              </div>
-              <div className="col">
-                <p>{category}</p>
+      <header className="container">
+        <h1>Particeep technical test</h1>
+      </header>
+      <div className="row">
+        <nav className="nav col">
+          <div className="row-col">
+            <div className="col mb-2">
+              <div className="row-col">
+                <h2 className="mb-2">Number of movies per page</h2>
+                <div className="col">
+                  <p
+                    className="nav-limit-item"
+                    onClick={() => setMoviesPerPage(4)}
+                  >
+                    4
+                  </p>
+                  <p
+                    className="nav-limit-item"
+                    onClick={() => setMoviesPerPage(8)}
+                  >
+                    8
+                  </p>
+                  <p
+                    className="nav-limit-item"
+                    onClick={() => setMoviesPerPage(12)}
+                  >
+                    12
+                  </p>
+                </div>
               </div>
             </div>
-          );
-        })}
-      </div> */}
-      <ul className="grid">
-        {currentMovies.map((movie) => {
-          return (
-            <MovieCard
-              key={movie.id}
-              id={movie.id}
-              title={movie.title}
-              likes={movie.likes}
-              dislikes={movie.dislikes}
-              category={movie.category}
-            />
-          );
-        })}
-      </ul>
+            <div className="col mb-2">
+              <div className="row-col">
+                <h2 className="mb-2">Categories</h2>
+                {categories.map((category) => {
+                  return (
+                    <div className="row nav-category-item">
+                      <p>{category}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div className="col">
+          <ul className="grid">
+            {currentMovies.map((movie) => {
+              return (
+                <MovieCard
+                  key={movie.id}
+                  id={movie.id}
+                  title={movie.title}
+                  likes={movie.likes}
+                  dislikes={movie.dislikes}
+                  category={movie.category}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      </div>
       <Pagination
         moviesPerPage={moviesPerPage}
         totalMovies={movies.length}
