@@ -12,9 +12,6 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
   const getWidthRatio = () => {
     const total = likes + dislikes;
     const likePercentage = (likes / total) * 100;
-    if (id == 4) {
-      console.log(`${likePercentage.toFixed(2)}%`);
-    }
     return `${likePercentage.toFixed(2)}%`;
   };
 

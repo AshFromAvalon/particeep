@@ -1,35 +1,35 @@
 import "./App.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MovieCard from "./components/MovieCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "./components/Pagination";
+import { movies$ } from "./movies";
 
 function App() {
+  const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
+  const categories = useSelector((state) => state.categories);
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
-  const uniqCategories = [...new Set(movies.map((movie) => movie.category))];
-  const [selectedCat, setSelectedCat] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      await movies$.then((movies) =>
+        dispatch({ type: "fetchData", payload: movies })
+      );
+    };
+    getMovies();
+    setIsLoading(false);
+  }, []);
+
+  // retreive categories
+  // const uniqCategories = [...new Set(movies.map((movie) => movie.category))];
 
   // Get current movies
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies
-    .filter((movie) =>
-      selectedCat.length > 0
-        ? selectedCat.includes(movie.category)
-        : movie.category
-    )
-    .slice(indexOfFirstMovie, indexOfLastMovie);
-
-  // Select category
-  const handleFilter = (cat) => {
-    const newArr = [...selectedCat];
-    newArr.includes(cat)
-      ? newArr.splice(newArr.indexOf(cat), 1)
-      : newArr.push(cat);
-    setSelectedCat(newArr);
-  };
+  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -73,10 +73,16 @@ function App() {
             <div className="col mb-2">
               <div className="row--col">
                 <h2 className="mb-2">Categories</h2>
-                {uniqCategories.map((category) => {
+                {categories.map((category) => {
                   return (
                     <div className="row nav-category-item">
-                      <p onClick={() => handleFilter(category)}>{category}</p>
+                      <p
+                        onClick={() =>
+                          dispatch({ type: "filter", payload: category })
+                        }
+                      >
+                        {category}
+                      </p>
                     </div>
                   );
                 })}
