@@ -9,12 +9,27 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
   const uniqCategories = [...new Set(movies.map((movie) => movie.category))];
-  const [selectedCat, setSelectedCat] = useState(uniqCategories);
+  const [selectedCat, setSelectedCat] = useState([]);
 
   // Get current movies
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const currentMovies = movies
+    .filter((movie) =>
+      selectedCat.length > 0
+        ? selectedCat.includes(movie.category)
+        : movie.category
+    )
+    .slice(indexOfFirstMovie, indexOfLastMovie);
+
+  // Select category
+  const handleFilter = (cat) => {
+    const newArr = [...selectedCat];
+    newArr.includes(cat)
+      ? newArr.splice(newArr.indexOf(cat), 1)
+      : newArr.push(cat);
+    setSelectedCat(newArr);
+  };
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -61,7 +76,7 @@ function App() {
                 {uniqCategories.map((category) => {
                   return (
                     <div className="row nav-category-item">
-                      <p>{category}</p>
+                      <p onClick={() => handleFilter(category)}>{category}</p>
                     </div>
                   );
                 })}

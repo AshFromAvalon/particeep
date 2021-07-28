@@ -49,6 +49,7 @@ header h1 {
   flex-flow: row wrap;
   justify-content: flex-start;
   padding: 1em;
+  overflow-x: auto;
 }
 
 .grid-item {
