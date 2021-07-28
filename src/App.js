@@ -32,7 +32,10 @@ function App() {
   return (
     <main className="container">
       <header className="container">
-        <h1>Particeep technical test</h1>
+        <div className="row-col">
+          <h1>Particeep's technical test</h1>
+          <p>Thomas Le Bihan - Front End Junior Developer</p>
+        </div>
       </header>
       <div className="row">
         <nav className="nav col">
