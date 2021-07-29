@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faThumbsDown,
@@ -6,8 +7,11 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+import Modal from "./Modal";
+
 const MovieCard = ({ id, title, likes, dislikes, category }) => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const getWidthRatio = () => {
     const total = likes + dislikes;
@@ -17,6 +21,9 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
 
   return (
     <li className="grid-item">
+      {showModal && (
+        <Modal showModal={setShowModal} isShowing={showModal} movieId={id} />
+      )}
       <div className="grid-item-wrapper">
         <div className="row">
           <div className="col">
@@ -64,7 +71,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                 icon={faTrashAlt}
                 style={{ cursor: "pointer" }}
                 size="sm"
-                onClick={() => dispatch({ type: "delete", payload: id })}
+                onClick={() => setShowModal(true)}
               />
             </div>
           </div>

@@ -1,9 +1,11 @@
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import MovieCard from "./components/MovieCard";
 import { useState, useEffect } from "react";
-import Pagination from "./components/Pagination";
+
 import { movies$ } from "./movies";
+
+import Pagination from "./components/Pagination";
+import MovieCard from "./components/MovieCard";
 import Nav from "./components/Nav";
 import NumberOfMovieFilter from "./components/NumberOfMovieFilter";
 import CategoryFilter from "./components/CategoryFilter";
@@ -22,6 +24,7 @@ function App() {
   const categories = useSelector((state) =>
     state.categories.filter((cat) => cat.count > 0)
   );
+
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
   const [limitOptions, setLimitOptions] = useState(limitOptionsData);
@@ -95,14 +98,16 @@ function App() {
             <ul className="grid">
               {currentMovies.map((movie) => {
                 return (
-                  <MovieCard
-                    key={movie.id}
-                    id={movie.id}
-                    title={movie.title}
-                    likes={movie.likes}
-                    dislikes={movie.dislikes}
-                    category={movie.category}
-                  />
+                  <div>
+                    <MovieCard
+                      key={movie.id}
+                      id={movie.id}
+                      title={movie.title}
+                      likes={movie.likes}
+                      dislikes={movie.dislikes}
+                      category={movie.category}
+                    />
+                  </div>
                 );
               })}
             </ul>
