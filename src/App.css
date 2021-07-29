@@ -38,11 +38,18 @@ header h1 {
   width: 30%;
 }
 
+@media (max-width: 1244px) {
+  .modal-content {
+    width: 50%;
+  }
+}
+
 .close {
   color: var(--crl-primary--200);
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin-left: 0.5em;
 }
 
 .close:hover,
@@ -117,15 +124,14 @@ header h1 {
   flex-flow: row wrap;
   justify-content: flex-start;
   padding: 1em;
-  overflow-x: auto;
+  /* width: 80%; */
 }
 
 .grid-item {
   padding: 0.5em;
-  flex-basis: 33.33%;
+  flex-basis: 50%;
   min-width: 250px;
   position: relative;
-  -ms-flex: auto;
 }
 
 .grid-item-wrapper {
@@ -134,17 +140,7 @@ header h1 {
   border-radius: 5px;
 }
 
-@media (max-width: 1310px) {
-  .grid-item {
-    flex-basis: 33.33%;
-  }
-}
-@media (max-width: 1244px) {
-  .grid-item {
-    flex-basis: 50%;
-  }
-}
-@media (max-width: 930px) {
+@media (max-width: 981px) {
   .grid-item {
     flex-basis: 100%;
   }
@@ -155,6 +151,14 @@ header h1 {
 .icon-container {
   width: 40%;
   justify-content: space-between;
+}
+
+.btn-icon-dislike:active {
+  color: var(--clr-accent--100);
+}
+
+.btn-icon-like:active {
+  color: var(--clr-accent--300);
 }
 
 .category {
@@ -196,6 +200,10 @@ header h1 {
 }
 
 /* UTILITARIES */
+
+.mb-1 {
+  margin-bottom: 1em;
+}
 
 .mb-2 {
   margin-bottom: 2em;

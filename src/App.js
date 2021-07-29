@@ -98,16 +98,14 @@ function App() {
             <ul className="grid">
               {currentMovies.map((movie) => {
                 return (
-                  <div>
-                    <MovieCard
-                      key={movie.id}
-                      id={movie.id}
-                      title={movie.title}
-                      likes={movie.likes}
-                      dislikes={movie.dislikes}
-                      category={movie.category}
-                    />
-                  </div>
+                  <MovieCard
+                    key={movie.id}
+                    id={movie.id}
+                    title={movie.title}
+                    likes={movie.likes}
+                    dislikes={movie.dislikes}
+                    category={movie.category}
+                  />
                 );
               })}
             </ul>

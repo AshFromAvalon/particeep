@@ -37,7 +37,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
         <div className="row">
           <div className="row--col">
             <div className="col icon-container">
-              <div className="btn-icon">
+              <div className="btn-icon-like">
                 <FontAwesomeIcon
                   icon={faThumbsUp}
                   style={{ cursor: "pointer" }}
@@ -45,7 +45,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                   onClick={() => dispatch({ type: "like", payload: id })}
                 />
               </div>
-              <div className="btn-icon">
+              <div className="btn-icon-dislike">
                 <FontAwesomeIcon
                   icon={faThumbsDown}
                   style={{ cursor: "pointer" }}
@@ -63,16 +63,16 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                   }}
                 ></div>
               </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="btn-icon">
-              <FontAwesomeIcon
-                icon={faTrashAlt}
-                style={{ cursor: "pointer" }}
-                size="sm"
-                onClick={() => setShowModal(true)}
-              />
+              <div className="col">
+                <div className="btn-icon">
+                  <FontAwesomeIcon
+                    icon={faTrashAlt}
+                    style={{ cursor: "pointer" }}
+                    size="sm"
+                    onClick={() => setShowModal(true)}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

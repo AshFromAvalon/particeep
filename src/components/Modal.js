@@ -10,7 +10,7 @@ const Modal = ({ showModal, isShowing, movieId }) => {
         <span onClick={() => showModal(false)} class="close">
           X
         </span>
-        <p>You're about to permanently delete this movie.</p>
+        <p className="mb-1">You're about to permanently delete this movie.</p>
         <p className="mb-2">Please confirm.</p>
 
         <button
