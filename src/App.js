@@ -9,7 +9,9 @@ function App() {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
   const filteredMovies = useSelector((state) => state.filteredMovies);
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) =>
+    state.categories.filter((cat) => cat.count > 0)
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
   const [isLoading, setIsLoading] = useState(true);

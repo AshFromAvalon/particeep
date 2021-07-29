@@ -59,16 +59,13 @@ const movieReducer = (state = initialState, action) => {
       const moviesCopy = [...state.movies];
       const categoriesCopy = [...state.categories];
       const movie = moviesCopy.find((movie) => movie.id === action.payload);
-      const movieCat = movie.category;
+      const currentCat = movie.category;
+      const category = categoriesCopy.find((cat) => cat.name === currentCat);
 
       if (movie) {
         const index = moviesCopy.indexOf(movie);
         moviesCopy.splice(index, 1);
-      }
-
-      if (!categoriesCopy.includes(movieCat)) {
-        const index = categoriesCopy.indexOf(movieCat);
-        categoriesCopy.splice(index, 1);
+        category.count = category.count - 1;
       }
 
       return {
