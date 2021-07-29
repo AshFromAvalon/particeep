@@ -172,7 +172,7 @@ header h1 {
 
 .bg-gauge {
   margin-top: 1em;
-  height: 5px;
+  height: 3px;
   width: 40%;
   background-color: var(--clr-accent--100);
 }
