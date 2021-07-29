@@ -84,7 +84,7 @@ function App() {
                           dispatch({ type: "filter", payload: category })
                         }
                       >
-                        {category}
+                        {category.name}
                       </p>
                     </div>
                   );
