@@ -7,9 +7,13 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
   return (
     <nav>
       <ul className="container row--start pagination">
-        {pageNumbers.map((number) => {
+        {pageNumbers.map((number, index) => {
           return (
-            <li className="pagination-item" onClick={() => paginate(number)}>
+            <li
+              key={`page-${index}`}
+              className="pagination-item"
+              onClick={() => paginate(number)}
+            >
               {number}
             </li>
           );

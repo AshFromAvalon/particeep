@@ -6,6 +6,7 @@ const NumberOfMovieFilter = ({ handleNumberOfMoviesPerPage, limitOptions }) => {
         {limitOptions.map((option) => {
           return (
             <p
+              key={`option-${option.number}`}
               className={
                 option.isSelected
                   ? "nav-limit-item nav-limit-item--active"

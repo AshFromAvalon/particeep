@@ -15,6 +15,7 @@ const CategoryFilter = ({ categories }) => {
       {categories.map((category) => {
         return (
           <div
+            key={category.name}
             className={
               category.isSelected
                 ? "row nav-category-item nav-category-item--active"
