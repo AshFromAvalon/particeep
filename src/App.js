@@ -31,6 +31,8 @@ function App() {
     filteredMovies.length > 0
       ? filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie)
       : movies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const moviesLength =
+    filteredMovies.length > 0 ? filteredMovies.length : movies.length;
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -110,7 +112,7 @@ function App() {
             </ul>
             <Pagination
               moviesPerPage={moviesPerPage}
-              totalMovies={movies.length}
+              totalMovies={moviesLength}
               paginate={paginate}
             />
           </div>

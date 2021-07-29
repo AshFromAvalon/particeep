@@ -63,9 +63,11 @@ const movieReducer = (state = initialState, action) => {
         : selectedCatCopy.push(action.payload);
 
       let filteredMOviesCopy = [...state.filteredMovies];
+      // if no filter selected, reset filteredMovies
       if (selectedCatCopy.length === 0) {
         filteredMOviesCopy = [];
       }
+      // if filter(s) selected, fill filterMovies
       if (selectedCatCopy.length > 0) {
         filteredMOviesCopy = [
           ...state.movies.filter((movie) =>
