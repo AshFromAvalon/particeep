@@ -4,6 +4,15 @@ import MovieCard from "./components/MovieCard";
 import { useState, useEffect } from "react";
 import Pagination from "./components/Pagination";
 import { movies$ } from "./movies";
+import Nav from "./components/Nav";
+import NumberOfMovieFilter from "./components/NumberOfMovieFilter";
+import CategoryFilter from "./components/CategoryFilter";
+
+const limitOptionsData = [
+  { number: 4, isSelected: true },
+  { number: 8, isSelected: false },
+  { number: 12, isSelected: false },
+];
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +24,7 @@ function App() {
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
+  const [limitOptions, setLimitOptions] = useState(limitOptionsData);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch data
@@ -42,9 +52,24 @@ function App() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Set number of items
-  const handleNumberOfMoviesPerPage = (num) => {
+  const handleNumberOfMoviesPerPage = (option) => {
+    const limitOptionsCopy = [...limitOptions];
+    const currentOption = limitOptionsCopy.find(
+      (item) => item.number === option.number
+    );
+    const currentSelectedOption = limitOptionsCopy.find(
+      (item) => item.isSelected
+    );
+
+    if (currentOption) {
+      if (!currentOption.isSelected) {
+        currentOption.isSelected = true;
+        currentSelectedOption.isSelected = false;
+      }
+    }
+    setLimitOptions(limitOptionsCopy);
     paginate(1);
-    setMoviesPerPage(num);
+    setMoviesPerPage(option.number);
   };
 
   return (
@@ -55,57 +80,15 @@ function App() {
           <p>Thomas Le Bihan - Front End Junior Developer</p>
         </div>
       </header>
+
       <div className="row">
-        <nav className="nav col">
-          <div className="row--col">
-            <div className="col mb-2">
-              <div className="row--col">
-                <h2 className="mb-2">Number of movies per page</h2>
-                <div className="col">
-                  <p
-                    className="nav-limit-item"
-                    onClick={() => handleNumberOfMoviesPerPage(4)}
-                  >
-                    4
-                  </p>
-                  <p
-                    className="nav-limit-item"
-                    onClick={() => handleNumberOfMoviesPerPage(8)}
-                  >
-                    8
-                  </p>
-                  <p
-                    className="nav-limit-item"
-                    onClick={() => handleNumberOfMoviesPerPage(12)}
-                  >
-                    12
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col mb-2">
-              <div className="row--col">
-                <h2 className="mb-2">Categories</h2>
-                <p onClick={() => dispatch({ type: "clearFilters" })}>
-                  Clear filters
-                </p>
-                {categories.map((category) => {
-                  return (
-                    <div className="row nav-category-item">
-                      <p
-                        onClick={() =>
-                          dispatch({ type: "filter", payload: category })
-                        }
-                      >
-                        {category.name}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </nav>
+        <Nav>
+          <NumberOfMovieFilter
+            limitOptions={limitOptions}
+            handleNumberOfMoviesPerPage={handleNumberOfMoviesPerPage}
+          />
+          <CategoryFilter categories={categories} />
+        </Nav>
 
         <div className="col-list">
           <div className="row--col">

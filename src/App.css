@@ -26,8 +26,15 @@ header h1 {
 
 .nav-limit-item {
   border: 1px solid;
-  border-color: --crl-primary--100;
+  border-color: var(--crl-primary--100);
   padding: 0.5em 0.7em;
+}
+
+.nav-limit-item--active {
+  border: 1px solid;
+  border-color: var(--clr-accent--100);
+  color: white;
+  background-color: var(--clr-accent--100);
 }
 
 .nav-limit-item:hover {
@@ -40,6 +47,15 @@ header h1 {
 
 .nav-category-item {
   margin: 0.5em 0;
+}
+
+.nav-category-item--active {
+  color: var(--clr-accent--100);
+}
+
+.nav-category-item:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* GRID LIST  */

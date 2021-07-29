@@ -137,10 +137,14 @@ const movieReducer = (state = initialState, action) => {
     }
 
     case "clearFilters": {
+      const selectedCatCopy = [...state.selectedCat];
+      const removedSelectedCat = selectedCatCopy.map(
+        (cat) => (cat.isSelected = false)
+      );
       return {
         ...state,
         filteredMovies: [],
-        selectedCat: [],
+        selectedCat: removedSelectedCat,
       };
     }
 
