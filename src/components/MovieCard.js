@@ -34,7 +34,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                 <FontAwesomeIcon
                   icon={faThumbsUp}
                   style={{ cursor: "pointer" }}
-                  size="lg"
+                  size="sm"
                   onClick={() => dispatch({ type: "like", payload: id })}
                 />
               </div>
@@ -42,7 +42,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                 <FontAwesomeIcon
                   icon={faThumbsDown}
                   style={{ cursor: "pointer" }}
-                  size="lg"
+                  size="sm"
                   onClick={() => dispatch({ type: "dislike", payload: id })}
                 />
               </div>

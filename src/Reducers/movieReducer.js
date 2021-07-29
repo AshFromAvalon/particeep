@@ -29,6 +29,7 @@ const movieReducer = (state = initialState, action) => {
         movies: action.payload,
         categories: catStateObject,
       };
+      break;
     }
 
     case "like": {
@@ -41,6 +42,7 @@ const movieReducer = (state = initialState, action) => {
         ...state,
         movies: moviesCopy,
       };
+      break;
     }
 
     case "dislike": {
@@ -53,26 +55,40 @@ const movieReducer = (state = initialState, action) => {
         ...state,
         movies: moviesCopy,
       };
+      break;
     }
 
     case "delete": {
       const moviesCopy = [...state.movies];
+      const filteredMOviesCopy = [...state.filteredMovies];
       const categoriesCopy = [...state.categories];
+
       const movie = moviesCopy.find((movie) => movie.id === action.payload);
+      const filteredMovie = filteredMOviesCopy.find(
+        (movie) => movie.id === action.payload
+      );
       const currentCat = movie.category;
       const category = categoriesCopy.find((cat) => cat.name === currentCat);
 
       if (movie) {
-        const index = moviesCopy.indexOf(movie);
-        moviesCopy.splice(index, 1);
-        category.count = category.count - 1;
+        const movieIndex = moviesCopy.indexOf(movie);
+        moviesCopy.splice(movieIndex, 1);
       }
+
+      if (filteredMovie) {
+        const filteredMovieIndex = filteredMOviesCopy.indexOf(filteredMovie);
+        filteredMOviesCopy.splice(filteredMovieIndex, 1);
+      }
+
+      category.count = category.count - 1;
 
       return {
         ...state,
         movies: moviesCopy,
         categories: categoriesCopy,
+        filteredMovies: filteredMOviesCopy,
       };
+      break;
     }
 
     case "filter": {
@@ -115,6 +131,16 @@ const movieReducer = (state = initialState, action) => {
         categories: categoriesCopy,
         filteredMovies: filteredMOviesCopy,
         selectedCat: selectedCatCopy,
+      };
+
+      break;
+    }
+
+    case "clearFilters": {
+      return {
+        ...state,
+        filteredMovies: [],
+        selectedCat: [],
       };
     }
 

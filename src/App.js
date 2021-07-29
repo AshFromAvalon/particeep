@@ -9,6 +9,7 @@ function App() {
   const dispatch = useDispatch();
   const movies = useSelector((state) => state.movies);
   const filteredMovies = useSelector((state) => state.filteredMovies);
+  // Only get categories for movies in the list
   const categories = useSelector((state) =>
     state.categories.filter((cat) => cat.count > 0)
   );
@@ -16,6 +17,7 @@ function App() {
   const [moviesPerPage, setMoviesPerPage] = useState(4);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch data
   useEffect(() => {
     const getMovies = async () => {
       await movies$.then((movies) =>
@@ -39,6 +41,12 @@ function App() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  // Set number of items
+  const handleNumberOfMoviesPerPage = (num) => {
+    paginate(1);
+    setMoviesPerPage(num);
+  };
+
   return (
     <main className="container">
       <header className="container">
@@ -56,19 +64,19 @@ function App() {
                 <div className="col">
                   <p
                     className="nav-limit-item"
-                    onClick={() => setMoviesPerPage(4)}
+                    onClick={() => handleNumberOfMoviesPerPage(4)}
                   >
                     4
                   </p>
                   <p
                     className="nav-limit-item"
-                    onClick={() => setMoviesPerPage(8)}
+                    onClick={() => handleNumberOfMoviesPerPage(8)}
                   >
                     8
                   </p>
                   <p
                     className="nav-limit-item"
-                    onClick={() => setMoviesPerPage(12)}
+                    onClick={() => handleNumberOfMoviesPerPage(12)}
                   >
                     12
                   </p>
@@ -78,6 +86,9 @@ function App() {
             <div className="col mb-2">
               <div className="row--col">
                 <h2 className="mb-2">Categories</h2>
+                <p onClick={() => dispatch({ type: "clearFilters" })}>
+                  Clear filters
+                </p>
                 {categories.map((category) => {
                   return (
                     <div className="row nav-category-item">
