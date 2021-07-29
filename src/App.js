@@ -113,6 +113,7 @@ function App() {
               moviesPerPage={moviesPerPage}
               totalMovies={moviesLength}
               paginate={paginate}
+              currentPage={currentPage}
             />
           </div>
         </div>

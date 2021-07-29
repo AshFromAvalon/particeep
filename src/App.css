@@ -187,8 +187,26 @@ header h1 {
 
 .pagination-item {
   border: 1px solid;
-  border-color: --crl-primary--100;
+  border-color: var(--crl-primary--100);
   padding: 0.4em 0.6em;
+}
+
+.pagination-item--active:first-child {
+  border: 1px solid;
+  border-color: var(--clr-accent--200);
+  background-color: var(--clr-accent--200);
+  color: white;
+  padding: 0.4em 0.6em;
+  margin-right: 1em;
+}
+
+.pagination-item--active:not(:first-child) {
+  border: 1px solid;
+  border-color: var(--clr-accent--200);
+  background-color: var(--clr-accent--200);
+  color: white;
+  padding: 0.4em 0.6em;
+  margin: 0 1em;
 }
 
 .pagination-item + .pagination-item {

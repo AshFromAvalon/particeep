@@ -1,4 +1,4 @@
-const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
+const Pagination = ({ moviesPerPage, totalMovies, paginate, currentPage }) => {
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalMovies / moviesPerPage); i++) {
     pageNumbers.push(i);
@@ -11,7 +11,11 @@ const Pagination = ({ moviesPerPage, totalMovies, paginate }) => {
           return (
             <li
               key={`page-${index}`}
-              className="pagination-item"
+              className={
+                currentPage === number
+                  ? "pagination-item--active"
+                  : "pagination-item"
+              }
               onClick={() => paginate(number)}
             >
               {number}
