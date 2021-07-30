@@ -2,14 +2,17 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
+// Data
 import { movies$ } from "./movies";
 
+// Components
 import Pagination from "./components/Pagination";
 import MovieCard from "./components/MovieCard";
 import Nav from "./components/Nav";
 import NumberOfMovieFilter from "./components/NumberOfMovieFilter";
 import CategoryFilter from "./components/CategoryFilter";
 
+// Utils
 const limitOptionsData = [
   { number: 4, isSelected: true },
   { number: 8, isSelected: false },
@@ -44,6 +47,7 @@ function App() {
   // Get current movies
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  // Current movies and movie length depends on category filters
   const currentMovies =
     filteredMovies.length > 0
       ? filteredMovies.slice(indexOfFirstMovie, indexOfLastMovie)
@@ -64,6 +68,7 @@ function App() {
       (item) => item.isSelected
     );
 
+    // Toggle selected state so it can toggle active style
     if (currentOption) {
       if (!currentOption.isSelected) {
         currentOption.isSelected = true;
@@ -77,13 +82,14 @@ function App() {
 
   return (
     <main className="container">
+      {/* HEADER */}
       <header className="container">
         <div className="row--col">
           <h1>Particeep's technical test</h1>
           <p>Thomas Le Bihan - Front End Junior Developer</p>
         </div>
       </header>
-
+      {/* NAV MENU */}
       <div className="row">
         <Nav>
           <NumberOfMovieFilter
@@ -92,7 +98,7 @@ function App() {
           />
           <CategoryFilter categories={categories} />
         </Nav>
-
+        {/* GRID MOVIE LIST */}
         <div className="col-list">
           <div className="row--col">
             <ul className="grid">
@@ -109,6 +115,7 @@ function App() {
                 );
               })}
             </ul>
+            {/* PAGINATION */}
             <Pagination
               moviesPerPage={moviesPerPage}
               totalMovies={moviesLength}

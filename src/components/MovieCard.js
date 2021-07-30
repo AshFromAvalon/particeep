@@ -13,7 +13,8 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
-  const getWidthRatio = () => {
+  // GENERATE GAUGE'S WIDTH PERCENTAGE
+  const getLlikeDislikeRatio = () => {
     const total = likes + dislikes;
     const likePercentage = (likes / total) * 100;
     return `${likePercentage.toFixed(2)}%`;
@@ -26,6 +27,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
       )}
       <div className="grid-item-wrapper">
         <div className="row">
+          {/* CARD HEAD */}
           <div className="col">
             <h2 className="mb-2">{title}</h2>
           </div>
@@ -34,9 +36,11 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
           </div>
         </div>
 
+        {/* CARD BOTTOM */}
         <div className="row">
           <div className="row--col">
             <div className="col icon-container">
+              {/* LIKE BUTTON */}
               <div className="btn-icon-like">
                 <FontAwesomeIcon
                   icon={faThumbsUp}
@@ -45,6 +49,7 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                   onClick={() => dispatch({ type: "like", payload: id })}
                 />
               </div>
+              {/* DISLIKE BUTTON */}
               <div className="btn-icon-dislike">
                 <FontAwesomeIcon
                   icon={faThumbsDown}
@@ -59,10 +64,11 @@ const MovieCard = ({ id, title, likes, dislikes, category }) => {
                 <div
                   className="gauge"
                   style={{
-                    width: getWidthRatio(),
+                    width: getLlikeDislikeRatio(),
                   }}
                 ></div>
               </div>
+              {/* DELETE BUTTON */}
               <div className="col">
                 <div className="btn-icon">
                   <FontAwesomeIcon
