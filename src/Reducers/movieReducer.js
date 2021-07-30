@@ -49,7 +49,7 @@ const movieReducer = (state = initialState, action) => {
       const moviesCopy = [...state.movies];
       const movie = moviesCopy.find((movie) => movie.id === action.payload);
       if (movie) {
-        movie.likes = movie.dislikes + 1;
+        movie.dislikes = movie.dislikes + 1;
       }
       return {
         ...state,
